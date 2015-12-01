@@ -5,9 +5,6 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.SQLContext
 
 
-
-
-
 object Assignment {
 
 	case class Crime(date:String , adress:String , district:Int , beat:String , grid:Int, crimedescr:String , ucrCode:Int, latitude:String , longitude:String )
@@ -75,19 +72,23 @@ object Assignment {
 
 					case "4" =>
 					{
-						crimesDF.groupBy('crimedescr).count().sort('count.desc).show(1)
+						val result = crimesDF.groupBy('crimedescr).count().sort('count.desc)
+						result.withColumnRenamed("crimedescr", "Crime").show(1)
 					}
 
 					case "5" =>
 					{
-						crimesDF.groupBy('date.substr(0, 7)).count().sort('count.desc).show(3)
+						val result = crimesDF.groupBy('date.substr(0, 7)).count().sort('count.desc)
+						result.withColumnRenamed("substring(date,0,7)", "Date").withColumnRenamed("count", "Crime Count").show(3)
 					}
 
 					case "6" =>
 					{
 						val crimesCount = crimesDF.groupBy('crimedescr).count()
 						val day = crimesDF.groupBy('date.substr(0, 7)).count()
-						crimesCount.select(crimesCount("crimedescr"), crimesCount("count")/day.count).show()
+						val result = crimesCount.select(crimesCount("crimedescr"), crimesCount("count")/day.count)
+						result.withColumnRenamed("crimedescr", "Crime").withColumnRenamed("(count / 31)", "Per Day").show()
+
 					}
 				}		
 			}
