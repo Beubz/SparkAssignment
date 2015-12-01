@@ -35,13 +35,15 @@ object Assignment {
 
 		while (input != 0)
 		{
-			println("What do you want to know ?")
+			println("What do you want to know ? \n")
 			println("1. The crime that happens the most in Sacramento ? (RDD Style)")
 			println("2. The 3 days with the highest crime count ?")
 			println("3. The average of each crime per day ?")
 			println("4. What is the crime that happens the most in Sacramento ? (DF style")
 			println("5. The 3 days with the highest crime count ?")
-			println("6. The average of each crime per day ?")
+			println("6. The average of each crime per day ? \n")
+			println("0. QUIT \n")
+			
 			input = readLine("Choose wisely > ")
 
 				input match{
@@ -66,6 +68,10 @@ object Assignment {
 								})
 							}).countByValue().toList.sortBy(-_._2).take(3).foreach(println)
 					}
+					case "3" =>
+					{
+
+					}
 
 					case "4" =>
 					{
@@ -75,6 +81,13 @@ object Assignment {
 					case "5" =>
 					{
 						crimesDF.groupBy('date.substr(0, 7)).count().sort('count.desc).show(3)
+					}
+
+					case "6" =>
+					{
+						val crimesCount = crimesDF.groupBy('crimedescr).count()
+						val day = crimesDF.groupBy('date.substr(0, 7)).count()
+						crimesCount.select(crimesCount("crimedescr"), crimesCount("count")/day.count).show()
 					}
 				}		
 			}
