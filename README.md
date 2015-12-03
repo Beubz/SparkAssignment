@@ -22,7 +22,7 @@ sbt package
 
 ###### What is the crime that happens the most in Sacramento ?
 
-![alt tag](https://github.com/beubz/SparkAssignment/img/RDD1.png)
+![Question 1 - RDD](https://github.com/Beubz/SparkAssignment/blob/master/img/RDD1.png)
 
 ###### Give the 3 days with the highest crime count
 
