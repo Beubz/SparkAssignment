@@ -1,31 +1,32 @@
 # SparkAssignment
 
-### Build projects with SBT
+### Build project with SBT
 
 Download the git repository  
 
 ```
-git clone "https://github.com/Beubz/mapReduceAssigment1.git"
+git clone "https://github.com/Beubz/SparkAssignment.git"
 ```
 
 In the root directory you can package the project 
-
 
 ```
 sbt package
 ```
 
-Now you need to put the JAR on the server
-
-```
-scp target/scala-2.10/assignment_2.10-1.0.jar IP_DU_SERVEUR
-```
-
-On the serveur, you can execute the JAR file as follows
+### Run project
 
 ```
 ./spark-1.5.2/bin/spark-submit assignment_2.10-1.0.jar 2>/dev/null
 ```
+
+###### What is the crime that happens the most in Sacramento ?
+
+###### Give the 3 days with the highest crime count
+
+###### Calculate the average of each crime per day
+
+### Get results
 
 To get the CSV file after exporting it :
 
