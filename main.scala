@@ -55,6 +55,8 @@ object Assignment {
                 // crime that happens the most in Sacramento with RDD
                 case "1" => 
                 {
+                    println("Here is the crime that happens the most and the number of time it happened in january 06 in Sacramento : ")
+
                     file.mapPartitions(lines => {
                         val parser=new CSVParser(',')
                         lines.map(line => {
@@ -67,6 +69,8 @@ object Assignment {
                 // 3 days with the highest crime count with RDD
                 case "2" =>
                 {
+                    println("These are the 3 days with the highest crime count in january 06 in Sacramento : ")
+
                     file.mapPartitions(lines => {
                         val parser=new CSVParser(',')
                         lines.map(line => {
@@ -79,6 +83,8 @@ object Assignment {
                 // average of each crime per day with RDD
                 case "3" =>
                 {
+                    println("The average of each crime per day in january 06 in Sacramento is : ")
+
                     file.mapPartitions(lines => {
                         val parser=new CSVParser(',')
                         lines.map(line => {
@@ -91,6 +97,8 @@ object Assignment {
                 // crime that happens the most in Sacramento with DF
                 case "4" =>
                 {
+                    println("Here is the crime that happens the most and the number of time it happened in january 06 in Sacramento : ")
+
                     val result = crimesDF.groupBy('crimedescr).count().sort('count.desc)
                     result.withColumnRenamed("crimedescr", "Crime").show(1)
                 }
@@ -98,6 +106,8 @@ object Assignment {
                 // 3 days with the highest crime count with DF
                 case "5" =>
                 {
+                    println("These are the 3 days with the highest crime count in january 06 in Sacramento : ")
+
                     val result = crimesDF.groupBy('date.substr(0, 7)).count().sort('count.desc)
                     result.withColumnRenamed("substring(date,0,7)", "Date").withColumnRenamed("count", "Crime Count").show(3)
                 }
@@ -105,7 +115,9 @@ object Assignment {
                 // average of each crime per day with DF
                 case "6" =>
                 {
-                    val crimesCount = crimesDF.groupBy('crimedescr).count()
+                    println("The average of each crime per day in january 06 in Sacramento is : ")
+
+                    val crimesCount = crimesDF.groupBy('crimedescr).count().sort('count.desc)
                     val days = crimesDF.groupBy('date.substr(0, 7)).count()
                     val result = crimesCount.select(crimesCount("crimedescr"), crimesCount("count")/days.count)
                     result.withColumnRenamed("crimedescr", "Crime").withColumnRenamed("(count / 31)", "Per Day").show()
@@ -115,7 +127,9 @@ object Assignment {
                 // Export to CSV
                 case "7" =>
                 {
-                    val crimesCount = crimesDF.groupBy('crimedescr).count()
+                    println("Exporting to CSV ... ")
+
+                    val crimesCount = crimesDF.groupBy('crimedescr).count().sort('count.desc)
                     val days = crimesDF.groupBy('date.substr(0, 7)).count()
                     val result = crimesCount.select(crimesCount("crimedescr"), crimesCount("count")/days.count)
                     val csv = result.withColumnRenamed("crimedescr", "Crime").withColumnRenamed("(count / 31)", "Per Day")
