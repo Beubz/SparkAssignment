@@ -23,10 +23,25 @@ sbt package
 ###### What is the crime that happens the most in Sacramento ?
 
 ![Question 1 - RDD](https://github.com/Beubz/SparkAssignment/blob/master/img/RDD1.png)
+![Question 1 - DF](https://github.com/Beubz/SparkAssignment/blob/master/img/DF1.png)
+
+We can see that the crime that happens the most is 10851(A)VC TAKE VEH W/O OWNER and it happened 653 times
+
 
 ###### Give the 3 days with the highest crime count
 
+![Question 2 - RDD](https://github.com/Beubz/SparkAssignment/blob/master/img/RDD2.png)
+![Question 2 - DF](https://github.com/Beubz/SparkAssignment/blob/master/img/DF2.png)
+
+The 11th, 18th and 17th weren't really good days for Sacramento..
+
+
 ###### Calculate the average of each crime per day
+
+![Question 3 - RDD](https://github.com/Beubz/SparkAssignment/blob/master/img/RDD3.png)
+![Question 3 - DF](https://github.com/Beubz/SparkAssignment/blob/master/img/DF3.png)
+
+To see all the result, you can export it in a CSV file
 
 ### Get results
 
